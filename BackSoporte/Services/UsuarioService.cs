@@ -57,7 +57,7 @@ namespace BackSoporte.Services
 
             // validate
             if (account == null || !account.IsVerified || !BCrypt.Net.BCrypt.Verify(model.Password, account.PasswordHash))
-                throw new AppException("Email or password is incorrect");
+                throw new AppException("Correo electrónico o la contraseña son incorrectos");
 
             // authentication successful so generate jwt and refresh tokens
             var jwtToken = _jwtUtils.GenerateJwtToken(account);
@@ -85,13 +85,13 @@ namespace BackSoporte.Services
             if (refreshToken.IsRevoked)
             {
                 // revoke all descendant tokens in case this token has been compromised
-                revokeDescendantRefreshTokens(refreshToken, account, ipAddress, $"Attempted reuse of revoked ancestor token: {token}");
+                revokeDescendantRefreshTokens(refreshToken, account, ipAddress, $"Intento de reutilización del token de ancestro revocado: {token}");
                 _context.Update(account);
                 _context.SaveChanges();
             }
 
             if (!refreshToken.IsActive)
-                throw new AppException("Invalid token");
+                throw new AppException("Token invalido");
 
             // replace old refresh token with a new one (rotate token)
             var newRefreshToken = rotateRefreshToken(refreshToken, ipAddress);
@@ -120,10 +120,10 @@ namespace BackSoporte.Services
             var refreshToken = account.RefreshTokens.Single(x => x.Token == token);
 
             if (!refreshToken.IsActive)
-                throw new AppException("Invalid token");
+                throw new AppException("Token invalido");
 
             // revoke token and save
-            revokeRefreshToken(refreshToken, ipAddress, "Revoked without replacement");
+            revokeRefreshToken(refreshToken, ipAddress, "Revocado sin reemplazo");
             _context.Update(account);
             _context.SaveChanges();
         }
@@ -226,7 +226,7 @@ namespace BackSoporte.Services
         {
             // validate
             if (_context.Usuarios.Any(x => x.Email == model.Email))
-                throw new AppException($"Email '{model.Email}' is already registered");
+                throw new AppException($"El correo electrónico '{model.Email}' ya está registrado");
 
             // map model to new account object
             var account = _mapper.Map<Usuario>(model);
@@ -249,7 +249,7 @@ namespace BackSoporte.Services
 
             // validate
             if (account.Email != model.Email && _context.Usuarios.Any(x => x.Email == model.Email))
-                throw new AppException($"Email '{model.Email}' is already registered");
+                throw new AppException($"El correo electrónico '{model.Email}' ya está registrado");
 
             // hash password if it was entered
             if (!string.IsNullOrEmpty(model.Password))
@@ -377,7 +377,7 @@ namespace BackSoporte.Services
             {
                 // origin exists if request sent from browser single page app (e.g. Angular or React)
                 // so send link to verify via single page app
-                var verifyUrl = $"{origin}/usuarios/verify-email?token={account.VerificationToken}";
+                var verifyUrl = $"{origin}/auth/verify-email?token={account.VerificationToken}";
                 message = $@"<p>Haga clic en el siguiente enlace para verificar su dirección de correo electrónico:</p>
                             <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>";
             }
@@ -385,7 +385,7 @@ namespace BackSoporte.Services
             {
                 // origin missing if request sent directly to api (e.g. from Postman)
                 // so send instructions to verify directly with api
-                message = $@"<p>Utilice el siguiente token para verificar su dirección de correo electrónico con el <code>/usuarios/verify-email</code> ruta API:</p>
+                message = $@"<p>Utilice el siguiente token para verificar su dirección de correo electrónico con el <code>/auth/verify-email</code> ruta API:</p>
                             <p><code>{account.VerificationToken}</code></p>";
             }
 
@@ -402,9 +402,9 @@ namespace BackSoporte.Services
         {
             string message;
             if (!string.IsNullOrEmpty(origin))
-                message = $@"<p>Si no conoce su contraseña, visite la pagina de <a href=""{origin}/usuarios/forgot-password"">has olvidado tu contraseña</a>.</p>";
+                message = $@"<p>Si no conoce su contraseña, visite la pagina de <a href=""{origin}/auth/forgot-password"">has olvidado tu contraseña</a>.</p>";
             else
-                message = "<p>Si no conoce su contraseña, puede restablecerla a través de la ruta api <code>/accounts/forgot-password</code>.</p>";
+                message = "<p>Si no conoce su contraseña, puede restablecerla a través de la ruta api <code>/auth/forgot-password</code>.</p>";
 
             _emailService.Send(
                 to: email,
@@ -420,13 +420,13 @@ namespace BackSoporte.Services
             string message;
             if (!string.IsNullOrEmpty(origin))
             {
-                var resetUrl = $"{origin}/usuarios/reset-password?token={account.ResetToken}";
+                var resetUrl = $"{origin}/auth/reset-password?token={account.ResetToken}";
                 message = $@"<p>Haga clic en el siguiente enlace para restablecer su contraseña, el enlace será válido por 1 día:</p>
                             <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
             }
             else
             {
-                message = $@"<p>Utilice el siguiente token para restablecer su contraseña con la ruta api <code>/usuarios/reset-password</code>:</p>
+                message = $@"<p>Utilice el siguiente token para restablecer su contraseña con la ruta api <code>/auth/reset-password</code>:</p>
                             <p><code>{account.ResetToken}</code></p>";
             }
 

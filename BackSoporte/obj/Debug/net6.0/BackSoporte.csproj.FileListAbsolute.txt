@@ -73,3 +73,5 @@ D:\C#\Web\BackSoporte\BackSoporte\obj\Debug\net6.0\refint\BackSoporte.dll
 D:\C#\Web\BackSoporte\BackSoporte\obj\Debug\net6.0\BackSoporte.pdb
 D:\C#\Web\BackSoporte\BackSoporte\obj\Debug\net6.0\BackSoporte.genruntimeconfig.cache
 D:\C#\Web\BackSoporte\BackSoporte\obj\Debug\net6.0\ref\BackSoporte.dll
+D:\C#\Web\BackSoporte\BackSoporte\bin\Debug\net6.0\appsettings.Development.example.json
+D:\C#\Web\BackSoporte\BackSoporte\bin\Debug\net6.0\appsettings.example.json
