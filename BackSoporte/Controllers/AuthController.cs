@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BackSoporte.Controllers;
 
-    [Route("auth")]
-    [Authorize]
-    [ApiController]
-    public class AuthController :  BaseController
-    {
-    private readonly IUsuarioService _accountService;
+[Route("auth")]
+[Authorize]
+[ApiController]
+public class AuthController : BaseController
+{
+    private readonly IAuthenticateService _accountService;
 
-    public AuthController(IUsuarioService accountService)
+    public AuthController(IAuthenticateService accountService)
     {
         _accountService = accountService;
     }

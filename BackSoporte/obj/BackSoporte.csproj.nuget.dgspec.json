@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\Web\\BackSoporte\\BackSoporte\\BackSoporte.csproj": {}
+    "D:\\C#\\Web\\BackSupportApi\\BackSoporte\\BackSoporte.csproj": {}
   },
   "projects": {
-    "D:\\C#\\Web\\BackSoporte\\BackSoporte\\BackSoporte.csproj": {
+    "D:\\C#\\Web\\BackSupportApi\\BackSoporte\\BackSoporte.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\Web\\BackSoporte\\BackSoporte\\BackSoporte.csproj",
+        "projectUniqueName": "D:\\C#\\Web\\BackSupportApi\\BackSoporte\\BackSoporte.csproj",
         "projectName": "BackSoporte",
-        "projectPath": "D:\\C#\\Web\\BackSoporte\\BackSoporte\\BackSoporte.csproj",
+        "projectPath": "D:\\C#\\Web\\BackSupportApi\\BackSoporte\\BackSoporte.csproj",
         "packagesPath": "C:\\Users\\fferroni\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\Web\\BackSoporte\\BackSoporte\\obj\\",
+        "outputPath": "D:\\C#\\Web\\BackSupportApi\\BackSoporte\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fferroni\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8Vblj1k+COfphaSDkG5wHO3n1/rrS8LDnFVCyIixuu0mUY//EabDg6vxBT6G3NRfbrOMvLv/6uAJmAidYGKw0w==",
+  "dgSpecHash": "jQRYBQYoYzWyX3pEM/UU8+5Hz+ZM56menbfO566mzM2Xjpk4r8RAvF/I7oa0F6c/wdhpSzzBq6JiOonZH0bgSA==",
   "success": true,
-  "projectFilePath": "D:\\C#\\Web\\BackSoporte\\BackSoporte\\BackSoporte.csproj",
+  "projectFilePath": "D:\\C#\\Web\\BackSupportApi\\BackSoporte\\BackSoporte.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fferroni\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\fferroni\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

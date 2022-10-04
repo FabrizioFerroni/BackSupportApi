@@ -26,6 +26,7 @@ var builder = WebApplication.CreateBuilder(args);
     // configure DI for application services
     services.AddScoped<IJwtUtils, JwtUtils>();
     services.AddScoped<IUsuarioService, UsuarioService>();
+    services.AddScoped<IAuthenticateService, AuthenticateService>();
     services.AddScoped<IEmailService, EmailService>();
 }
 
